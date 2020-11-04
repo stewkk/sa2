@@ -22,6 +22,7 @@ FrameMain::FrameMain( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxMenuItem* wxMenuItem_logout;
 	wxMenuItem_logout = new wxMenuItem( wxMenu_main, wxID_ANY, wxString( wxT("Logout") ) , wxEmptyString, wxITEM_NORMAL );
 	wxMenu_main->Append( wxMenuItem_logout );
+	wxMenuItem_logout->Enable( false );
 
 	wxMenuBar_main->Append( wxMenu_main, wxT("Menu") );
 
@@ -70,6 +71,7 @@ FrameMain::FrameMain( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxButton_download = new wxButton( this, wxID_ANY, wxT("Download"), wxDefaultPosition, wxSize( -1,40 ), wxBORDER_NONE );
 
 	wxButton_download->SetBitmapMargins( wxSize( 0,0 ) );
+	wxButton_download->Enable( false );
 	wxButton_download->SetMinSize( wxSize( 100,40 ) );
 	wxButton_download->SetMaxSize( wxSize( -1,100 ) );
 
