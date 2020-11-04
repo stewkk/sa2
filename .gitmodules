@@ -1,0 +1,3 @@
+[submodule "shiki_api"]
+	path = shiki_api
+	url = https://github.com/stewkk/shiki_api
