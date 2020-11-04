@@ -1,5 +1,6 @@
 
 #include "ui.h"
+#include "icon.xpm"
 
 class MyFrameMain : public FrameMain {
 public:
