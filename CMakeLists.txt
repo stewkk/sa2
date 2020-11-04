@@ -10,8 +10,6 @@ set(SOURCE_LIB_UI src/ui.cpp)
 set(SOURCE_LIB_MYFRAME src/MyFrameMain.cpp)
 set(SOURCE_LIB_EVENT_HANDLERS src/event_handlers.cpp)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(GCC_COVERAGE_COMPILE_FLAGS "-Wwrite-strings")
-add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
 
 add_library(ui STATIC ${SOURCE_LIB_UI})
 add_library(my_frame STATIC ${SOURCE_LIB_MYFRAME})
