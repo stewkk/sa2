@@ -54,8 +54,8 @@ FrameMain::FrameMain( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxGridSizer* wxGridSizer_lists;
 	wxGridSizer_lists = new wxGridSizer( 2, 1, 0, 0 );
 
-	wxListBox_search_results = new wxListBox( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxHSCROLL|wxVSCROLL );
-	wxGridSizer_lists->Add( wxListBox_search_results, 0, wxALL|wxEXPAND, 5 );
+	wxListBox_anime_list = new wxListBox( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxHSCROLL|wxVSCROLL );
+	wxGridSizer_lists->Add( wxListBox_anime_list, 0, wxALL|wxEXPAND, 5 );
 
 	wxArrayString wxCheckListBox_subs_authorsChoices;
 	wxCheckListBox_subs_authors = new wxCheckListBox( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxCheckListBox_subs_authorsChoices, 0 );

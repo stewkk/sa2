@@ -41,7 +41,7 @@ class FrameMain : public wxFrame
 		wxMenu* wxMenu_main;
 		wxStatusBar* wxStatusBar_main;
 		wxSearchCtrl* search;
-		wxListBox* wxListBox_search_results;
+		wxListBox* wxListBox_anime_list;
 		wxCheckListBox* wxCheckListBox_subs_authors;
 		wxButton* wxButton_download;
 
