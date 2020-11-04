@@ -1,8 +1,11 @@
 
 #include "MyFrameMain.h"
 #include <wx/aboutdlg.h>
+#include "shiki_api.h"
 
 void MyFrameMain::wxMenuItem_info_menu_selection(wxCommandEvent& event) {
+    Shiki api;
+    api.api_users_id_anime_rates(1, 1, "s", false);
     wxAboutDialogInfo info;
     info.SetIcon(icon);
 	info.SetName("sa2");
