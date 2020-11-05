@@ -26,6 +26,7 @@ void get_parsed_anime_list(std::vector<std::string>& anime_list, const std::stri
 void MyFrameMain::wxlistbox_anime_list_update() {
     Shiki shiki_api("stewkk");
     std::string ans = shiki_api.api_users_id_anime_rates();
+    Update();
     std::vector<std::string> anime_list;
     get_parsed_anime_list(anime_list, ans);
     for (auto& anime_name : anime_list) {
