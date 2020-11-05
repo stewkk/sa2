@@ -47,6 +47,7 @@ class FrameMain : public wxFrame
 
 		// Virtual event handlers, override them in your derived class
 		virtual void wxMenuItem_info_menu_selection( wxCommandEvent& event ) { event.Skip(); }
+		virtual void wxListBox_anime_choosed( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
