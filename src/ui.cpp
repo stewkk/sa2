@@ -71,7 +71,6 @@ FrameMain::FrameMain( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxButton_download = new wxButton( this, wxID_ANY, wxT("Download"), wxDefaultPosition, wxSize( -1,40 ), wxBORDER_NONE );
 
 	wxButton_download->SetBitmapMargins( wxSize( 0,0 ) );
-	wxButton_download->Enable( false );
 	wxButton_download->SetMinSize( wxSize( 100,40 ) );
 	wxButton_download->SetMaxSize( wxSize( -1,100 ) );
 
@@ -89,11 +88,13 @@ FrameMain::FrameMain( wxWindow* parent, wxWindowID id, const wxString& title, co
 	// Connect Events
 	wxMenu_main->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FrameMain::wxMenuItem_info_menu_selection ), this, wxMenuItem_info->GetId());
 	wxListBox_anime_list->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FrameMain::wxListBox_anime_choosed ), NULL, this );
+	wxButton_download->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FrameMain::wxButton_download_click ), NULL, this );
 }
 
 FrameMain::~FrameMain()
 {
 	// Disconnect Events
 	wxListBox_anime_list->Disconnect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FrameMain::wxListBox_anime_choosed ), NULL, this );
+	wxButton_download->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FrameMain::wxButton_download_click ), NULL, this );
 
 }

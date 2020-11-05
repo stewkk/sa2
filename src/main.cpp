@@ -12,6 +12,7 @@ App::~App() {
 }
 
 bool App::OnInit() {
+    std::setlocale(LC_ALL, "ru_RU.UTF-8");
     frame_main = new MyFrameMain(nullptr);
     frame_main->Show();
     frame_main->SetIcon(wxIcon(icon));

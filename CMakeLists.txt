@@ -24,6 +24,7 @@ include(${wxWidgets_USE_FILE})
 
 target_include_directories(event_handlers PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/resources)
 target_include_directories(event_handlers PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/shiki_api/include)
+target_include_directories(event_handlers PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/smotret-anime_api/include)
 target_include_directories(my_frame PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/resources)
 target_link_libraries(app my_frame event_handlers ui shiki_api smotret-anime_api ${wxWidgets_LIBRARIES})
 
