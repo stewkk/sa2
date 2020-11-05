@@ -1,3 +1,6 @@
 [submodule "shiki_api"]
 	path = shiki_api
 	url = https://github.com/stewkk/shiki_api
+[submodule "smotret-anime_api"]
+	path = smotret-anime_api
+	url = https://github.com/stewkk/smotret-anime_api
