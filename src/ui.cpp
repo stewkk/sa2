@@ -15,14 +15,13 @@ FrameMain::FrameMain( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	wxMenuBar_main = new wxMenuBar( 0 );
 	wxMenu_main = new wxMenu();
+	wxMenuItem* wxMenuItem_shiki_login;
+	wxMenuItem_shiki_login = new wxMenuItem( wxMenu_main, wxID_ANY, wxString( wxT("Shiki login") ) , wxEmptyString, wxITEM_NORMAL );
+	wxMenu_main->Append( wxMenuItem_shiki_login );
+
 	wxMenuItem* wxMenuItem_info;
 	wxMenuItem_info = new wxMenuItem( wxMenu_main, wxID_ANY, wxString( wxT("Info") ) , wxEmptyString, wxITEM_NORMAL );
 	wxMenu_main->Append( wxMenuItem_info );
-
-	wxMenuItem* wxMenuItem_logout;
-	wxMenuItem_logout = new wxMenuItem( wxMenu_main, wxID_ANY, wxString( wxT("Logout") ) , wxEmptyString, wxITEM_NORMAL );
-	wxMenu_main->Append( wxMenuItem_logout );
-	wxMenuItem_logout->Enable( false );
 
 	wxMenuBar_main->Append( wxMenu_main, wxT("Menu") );
 
@@ -86,6 +85,7 @@ FrameMain::FrameMain( wxWindow* parent, wxWindowID id, const wxString& title, co
 	this->Centre( wxBOTH );
 
 	// Connect Events
+	wxMenu_main->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FrameMain::wxMenuItem_shiki_login_menu_selection ), this, wxMenuItem_shiki_login->GetId());
 	wxMenu_main->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( FrameMain::wxMenuItem_info_menu_selection ), this, wxMenuItem_info->GetId());
 	wxListBox_anime_list->Connect( wxEVT_COMMAND_LISTBOX_DOUBLECLICKED, wxCommandEventHandler( FrameMain::wxListBox_anime_choosed ), NULL, this );
 	wxButton_download->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( FrameMain::wxButton_download_click ), NULL, this );

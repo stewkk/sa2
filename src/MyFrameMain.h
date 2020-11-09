@@ -10,6 +10,7 @@ struct translation {
 
 class MyFrameMain : public FrameMain {
 public:
+    virtual void wxMenuItem_shiki_login_menu_selection(wxCommandEvent& event);
     virtual void wxMenuItem_info_menu_selection(wxCommandEvent& event);
     virtual void wxListBox_anime_choosed(wxCommandEvent& event);
     virtual void wxButton_download_click(wxCommandEvent& event);
@@ -23,4 +24,3 @@ private:
     std::string selected_anime_name;
     std::vector<std::vector<translation>> list_of_translations_by_authors; 
 };
-

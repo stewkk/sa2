@@ -115,4 +115,6 @@ void MyFrameMain::wxButton_download_click(wxCommandEvent& event) {
     event.Skip();
 }
 
-
+void MyFrameMain::wxMenuItem_shiki_login_menu_selection( wxCommandEvent& event ) {
+    event.Skip(); 
+}

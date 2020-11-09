@@ -46,6 +46,7 @@ class FrameMain : public wxFrame
 		wxButton* wxButton_download;
 
 		// Virtual event handlers, override them in your derived class
+		virtual void wxMenuItem_shiki_login_menu_selection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void wxMenuItem_info_menu_selection( wxCommandEvent& event ) { event.Skip(); }
 		virtual void wxListBox_anime_choosed( wxCommandEvent& event ) { event.Skip(); }
 		virtual void wxButton_download_click( wxCommandEvent& event ) { event.Skip(); }
