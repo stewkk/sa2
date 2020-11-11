@@ -10,6 +10,7 @@ struct translation {
 
 class MyFrameMain : public FrameMain {
 public:
+    virtual void wxMenuItem_refresh_anime_list_menu_selection(wxCommandEvent& event); 
     virtual void wxMenuItem_shiki_login_menu_selection(wxCommandEvent& event);
     virtual void wxMenuItem_info_menu_selection(wxCommandEvent& event);
     virtual void wxListBox_anime_choosed(wxCommandEvent& event);

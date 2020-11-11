@@ -4,12 +4,14 @@
 #include "shiki_api.h"
 #include "smotret-anime_api.h"
 #include "nlohmann/json.hpp"
+#include "MyDialogLogin.h"
+#include <fstream>
 
 void MyFrameMain::wxMenuItem_info_menu_selection(wxCommandEvent& event) {
     wxAboutDialogInfo info;
     info.SetIcon(icon);
 	info.SetName("sa2");
-	info.SetVersion("0.1");
+	info.SetVersion("0.2");
 	info.SetDescription("Program to download subtitles from smotret-anime.online");
 	info.SetCopyright(wxT("(C) 2020 Alexandr Starovoytov <stewk6@gmail.com>"));
 	wxAboutBox(info);
@@ -22,25 +24,36 @@ struct anime_entry {
 };
 
 void get_parsed_anime_list(std::vector<anime_entry>& anime_list, const std::string& server_ans) {
-    nlohmann::json ans_json = nlohmann::json::parse(server_ans); 
-    for (auto& entry : ans_json) {
-        std::string anime_name = entry["anime"]["name"];
-        long long anime_id = entry["anime"]["id"].get<long long>();
-        anime_list.push_back({anime_name, anime_id});
+    nlohmann::json ans_json = nlohmann::json::parse(server_ans);
+    if (ans_json.is_array()) {
+        for (auto& entry : ans_json) {
+            std::string anime_name = entry["anime"]["name"];
+            long long anime_id = entry["anime"]["id"].get<long long>();
+            anime_list.push_back({anime_name, anime_id});
+        }
     }
 }
 
 void MyFrameMain::wxlistbox_anime_list_update() {
-    Shiki shiki_api("stewkk");
-    std::string ans = shiki_api.api_users_id_anime_rates();
+    std::ifstream shiki_login_file(".shiki_login");
+    std::string shiki_username;
+    if (shiki_login_file.is_open()) {
+        shiki_login_file >> shiki_username;
+    }
     Update();
-    std::vector<anime_entry> anime_list;
-    get_parsed_anime_list(anime_list, ans);
-    wxListBox_anime_list->Clear();
-    anime_ids.clear();
-    for (auto& anime : anime_list) {
-        wxListBox_anime_list->Append(anime.name);
-        anime_ids.push_back(anime.id);
+    if (shiki_username.size() != 0) {
+        Shiki shiki_api(shiki_username);
+        std::string ans = shiki_api.api_users_id_anime_rates();
+        Update();
+        std::vector<anime_entry> anime_list;
+        get_parsed_anime_list(anime_list, ans);
+        wxListBox_anime_list->Clear();
+        anime_ids.clear();
+        Update();
+        for (auto& anime : anime_list) {
+            wxListBox_anime_list->Append(anime.name);
+            anime_ids.push_back(anime.id);
+        }
     }
 }
 
@@ -116,5 +129,13 @@ void MyFrameMain::wxButton_download_click(wxCommandEvent& event) {
 }
 
 void MyFrameMain::wxMenuItem_shiki_login_menu_selection( wxCommandEvent& event ) {
+    MyDialogLogin* dialog_login_shiki = new MyDialogLogin(nullptr); 
+    dialog_login_shiki->ShowModal(); 
+    delete dialog_login_shiki;
     event.Skip(); 
+}
+
+void MyFrameMain::wxMenuItem_refresh_anime_list_menu_selection(wxCommandEvent& event) {
+    wxlistbox_anime_list_update();
+    event.Skip();
 }
