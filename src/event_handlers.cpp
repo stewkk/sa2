@@ -72,7 +72,8 @@ void parse_anime_translations(const std::string& server_ans,
         if (translation_entry["type"].get<std::string>() == "subRu") {
             translation new_entry;
             new_entry.id = translation_entry["id"].get<long long>();
-            new_entry.episodeFull = translation_entry["episode"]["episodeFull"];
+            new_entry.episodeFull = translation_entry["episode"]["episodeInt"]
+                    + translation_entry["episode"]["episodeType"];
             std::string authorsSummary = translation_entry["authorsSummary"].get<std::string>();
             if (authorsSummary.size() != 0) {
                 translations_by_authors[authorsSummary].push_back(new_entry);
