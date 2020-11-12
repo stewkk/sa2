@@ -132,6 +132,7 @@ void MyFrameMain::wxButton_download_click(wxCommandEvent& event) {
         }
         for (auto& translation : list_of_translations_by_authors[index]) {
             download_selected_subs(translation, selected_anime_name, subs_author_name);
+            Update();
         }
         Update();
     }
