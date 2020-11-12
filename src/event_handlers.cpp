@@ -110,19 +110,28 @@ void MyFrameMain::wxListBox_anime_choosed(wxCommandEvent& event) {
     event.Skip(); 
 }
 
-void download_selected_subs(const translation& translation_entry) {
+void download_selected_subs(const translation& translation_entry, const std::string& selected_anime_name, 
+        const std::string& subs_author_name) {
     SmotretAnime smotret_anime_api;
-    smotret_anime_api.download_sub_by_translation_id(translation_entry.id, "./",
-            translation_entry.episodeFull + ".ass");
+    smotret_anime_api.download_sub_by_translation_id(translation_entry.id, selected_anime_name + "/" +
+            subs_author_name + "/", translation_entry.episodeFull + ".ass");
 }
 
 void MyFrameMain::wxButton_download_click(wxCommandEvent& event) {
     wxArrayInt selected_authors;
     wxCheckListBox_subs_authors->GetSelections(selected_authors);
     Update();
+    if (!wxDirExists(selected_anime_name)) {
+        wxMkdir(selected_anime_name);
+    }
+    Update();
     for (auto& index : selected_authors) {
+        std::string subs_author_name = (std::string)wxCheckListBox_subs_authors->GetString(index); 
+        if (!wxDirExists(selected_anime_name + "/" + subs_author_name)) {
+            wxMkdir(selected_anime_name + "/" + subs_author_name);
+        }
         for (auto& translation : list_of_translations_by_authors[index]) {
-            download_selected_subs(translation);
+            download_selected_subs(translation, selected_anime_name, subs_author_name);
         }
         Update();
     }
